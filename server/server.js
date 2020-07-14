@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
  * URL: mongodb+srv://mongoAdminNode:698nsO2Nf0BXvcpC@cluster0.jykue.mongodb.net/cafe
  */
 
+// Definimos variable personalizada MONGO_URI en heroku para que la gente no pueda ver la cadena de conexión de la BD
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
