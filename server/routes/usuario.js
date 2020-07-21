@@ -4,9 +4,11 @@ const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
 
+const { verificarToken, VerificarAdminRole } = require('../middlewares/autenticacion');
+
 const app = express();
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verificarToken, function(req, res) {
 
     // Con esto, cuando la persona digite url/usuario?desde=10
     let desde = req.query.desde || 0;
@@ -39,7 +41,7 @@ app.get('/usuario', function(req, res) {
 
 });
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificarToken, VerificarAdminRole], function(req, res) {
     let body = req.body;
 
     let usuario = new Usuario({
@@ -65,7 +67,7 @@ app.post('/usuario', function(req, res) {
 
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificarToken, VerificarAdminRole], function(req, res) {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
 
@@ -87,7 +89,7 @@ app.put('/usuario/:id', function(req, res) {
     });
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificarToken, VerificarAdminRole], function(req, res) {
     let id = req.params.id;
     let logica = req.query.logica || 1;
     logica = Number(logica);

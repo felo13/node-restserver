@@ -1,3 +1,8 @@
+/**
+ * Archivo principal.
+ * las rutas están en routes/index.js
+ */
+
 require('./config/config');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -19,9 +24,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use(require('./routes/usuario'));
+// Configuración global de las rutas
+app.use(require('./routes/index.js'));
 
 // Forma que había hecho antes de tener la URL por config (me tocó hacer otra porque las URL son diferentes)
 const conectarBD = async(ruta, puerto, bD) => {
