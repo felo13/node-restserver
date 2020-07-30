@@ -45,3 +45,8 @@ process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
 // Semilla Autenticación
 // ===========================
 process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo'; // La variable se setea en Heroku directamente usando Heroku config: set SEED=""
+
+// ===========================
+// Google Client
+// ===========================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '745124012845-ci3qepc1a7ucl2jd319oa5f9cfsg8isu.apps.googleusercontent.com';
